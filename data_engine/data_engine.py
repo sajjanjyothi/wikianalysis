@@ -2,6 +2,7 @@ import asyncio
 import websockets
 import json
 import time
+import configs.constants as configs
 
 class DataEngine:
     """ Data engine class """
@@ -29,7 +30,7 @@ class DataEngine:
         """
         hatnote event collector, this will collect and parse data for a given time period
         """
-        async with websockets.connect("ws://wikimon.hatnote.com:9000") as ws:
+        async with websockets.connect(configs.WIKI_EVENT_ENDPOINT) as ws:
             now = time.time()
             while ( time.time() - now ) < runtime:
                 event = await ws.recv()
