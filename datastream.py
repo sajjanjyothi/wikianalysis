@@ -3,7 +3,7 @@ import data_engine.data_engine as analyser
 import matplotlib.pyplot as plt
 
 if __name__ == "__main__": 
-    runtime = name = input("How long you want to run this script for: ") 
+    runtime = name = input("How long you want to run this script for(please enter in seconds): ") 
     engine = analyser.DataEngine()
     asyncio.get_event_loop().run_until_complete(engine.start_analysis(float(runtime)))
      # graph plotting
@@ -19,8 +19,8 @@ if __name__ == "__main__":
     plt.figure("edits/insersts/creations/deletions")
     plt.bar(["edits","inserts","creations","deletions"],[engine.edits,engine.inserts,engine.create,engine.deletes])
 
-    plt.figure("un patrolled edits")
-    plt.pie([engine.patrolled_edits],labels=["patrolled edits"])   
+    plt.figure("patrolled/unpatrolled edits")
+    plt.pie([engine.patrolled_edits, engine.unpatrolled_edits],labels=["patrolled edits", "un patrolled edits"])   
 
     print("bot updation: {}".format(engine.bot_actions))
     plt.show()

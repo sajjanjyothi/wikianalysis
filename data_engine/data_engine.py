@@ -20,8 +20,9 @@ class DataEngine:
         self.deletes = 0
         # bot actions
         self.bot_actions = 0
-        # unpatrolled edits
+        # patrolled/unpatrolled edits
         self.patrolled_edits = 0
+        self.unpatrolled_edits = 0
     
     async def start_analysis(self,runtime:float) -> None:
         """
@@ -39,6 +40,8 @@ class DataEngine:
                     
                     if json_data["is_unpatrolled"] == False:
                         self.patrolled_edits += 1
+                    else:
+                        self.unpatrolled_edits += 1
 
                     if json_data["action"] == "edit":
                         self.edits += 1
