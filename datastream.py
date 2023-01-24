@@ -23,4 +23,5 @@ if __name__ == "__main__":
     plt.pie([engine.patrolled_edits, engine.unpatrolled_edits],labels=["patrolled edits", "un patrolled edits"])   
 
     print("bot updation: {}".format(engine.bot_actions))
+    print("total actions happening on wiki :{}".format(engine.total_actions))
     plt.show()

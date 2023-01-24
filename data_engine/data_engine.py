@@ -23,6 +23,7 @@ class DataEngine:
         # patrolled/unpatrolled edits
         self.patrolled_edits = 0
         self.unpatrolled_edits = 0
+        self.total_actions = 0
     
     async def start_analysis(self,runtime:float) -> None:
         """
@@ -32,6 +33,7 @@ class DataEngine:
             now = time.time()
             while ( time.time() - now ) < runtime:
                 event = await ws.recv()
+                self.total_actions += 1
                 print(event)
                 json_data = json.loads(event)
                 try:
@@ -61,7 +63,8 @@ class DataEngine:
                         self.country_wise_action[json_data["geo_ip"]["country_name"]] += 1
                     else:
                         self.country_wise_action[json_data["geo_ip"]["country_name"]] = 1
-                except:
+                except Exception as ex:
+                    print(ex)
                     continue
             
            
